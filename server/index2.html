@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetching data </title>
+    <style>
+        body{
+            background-color: darkgrey;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          
+        }
+        h1,h2 {
+            font-weight: 700 ;
+        }
+        select{
+            width: 320px;
+            height: 30px;
+        }
+        pre{
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+   <h1> THe house of the poem</h1> 
+   <label for="poem"> choose a verse</label>
+   <select name="poem" id="">
+      <option value="verse1"> verse1</option>
+      <option value="verse2"> verse2</option>
+      <option value="verse3"> verse3</option>
+      <option value="verse4"> verse4</option>
+      <option value="verse5"> verse5</option>
+      <option value="verse6"> verse6</option>
+   </select>
+   <h2>Get to calm your nerve and enjoy the most of this life.</h2>
+   <pre>
+
+   </pre>
+   <h3>Courtsey of kristine karimi </h3>
+   <script>
+       const select=document.querySelector('select');
+       const precontent=document.querySelector('pre');
+
+     select.onchange=function(){
+    const verse=select.value;
+    updateDisplay(verse);
+      };
+      function updateDisplay(verse){
+       verse=verse.replace('','') 
+       verse=verse.toLowerCase()
+       let url=verse+'.txt'
+       let request=new XMLHttpRequest();
+       request.open('GET',url);
+       request.responseType='text';
+   request.onload=function(){
+       precontent.textContent=request.response
+   };
+      
+     request.send()
+      }
+      updateDisplay('verse1')
+          precontent.textContent='verse1'
+      
+       
+   </script>
+</body>
+</html>
